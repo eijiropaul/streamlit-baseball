@@ -148,8 +148,9 @@ fig = go.Figure()
 fig.update_layout(
     xaxis=dict(range=[0, 1273], showgrid=False, zeroline=False),
     yaxis=dict(range=[1279, 0], showgrid=False, zeroline=False),
-    width=700,
-    height=702,
+    autosize=True,
+    height=None,
+    margin=dict(l=10, r=10, t=10, b=10),
     plot_bgcolor="white",
     images=[
         dict(
@@ -187,7 +188,7 @@ if not df_batter.empty:
                     df_batter["Batter"], df_batter["PitchType"], df_batter["HitType"]
                 )
             ],
-            name="CSVデータ",
+            showlegend=False,
         )
     )
 
