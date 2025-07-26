@@ -148,8 +148,8 @@ fig = go.Figure()
 fig.update_layout(
     xaxis=dict(range=[0, 1273], showgrid=False, zeroline=False),
     yaxis=dict(range=[1279, 0], showgrid=False, zeroline=False),
-    width=600,
-    height=1000,
+    width=700,
+    height=702,
     plot_bgcolor="white",
     images=[
         dict(
