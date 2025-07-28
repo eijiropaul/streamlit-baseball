@@ -146,11 +146,19 @@ elif Runners_filter == "得点圏":
 fig = go.Figure()
 
 fig.update_layout(
-    xaxis=dict(range=[0, 1273], showgrid=False, zeroline=False),
-    yaxis=dict(range=[1279, 0], showgrid=False, zeroline=False),
+    xaxis=dict(
+        range=[0, 1273],
+        scaleanchor="y",
+        showgrid=False,
+        zeroline=False,
+    ),
+    yaxis=dict(
+        range=[1279, 0],
+        showgrid=False,
+        zeroline=False,
+    ),
     autosize=True,
-    height=None,
-    margin=dict(l=10, r=10, t=10, b=10),
+    margin=dict(l=0, r=0, t=0, b=0),
     plot_bgcolor="white",
     images=[
         dict(
@@ -161,12 +169,13 @@ fig.update_layout(
             y=0,
             sizex=1273,
             sizey=1279,
-            sizing="stretch",
+            sizing="contain",
             opacity=1,
             layer="below",
         )
     ],
 )
+
 
 # --- CSVデータを描画 ---
 if not df_batter.empty:
@@ -178,7 +187,7 @@ if not df_batter.empty:
             y=df_batter["打球Y"],
             mode="markers+text",
             marker=dict(
-                size=22,
+                size=14,
                 color=[get_color_by_pitchtype(pt) for pt in df_batter["PitchType"]],
                 symbol=[get_symbol_by_hittype(ht) for ht in df_batter["HitType"]],
             ),
@@ -199,7 +208,7 @@ if not df_batter.empty:
                 x=[632, row["打球X"]],
                 y=[1069, row["打球Y"]],
                 mode="lines",
-                line=dict(color=get_color_by_pitchtype(row["PitchType"]), width=3),
+                line=dict(color=get_color_by_pitchtype(row["PitchType"]), width=2),
                 showlegend=False,
                 hoverinfo="skip",
             )
@@ -207,3 +216,4 @@ if not df_batter.empty:
 
 # --- 描画 ---
 st.plotly_chart(fig, use_container_width=True)
+st.set_page_config(layout="wide")
